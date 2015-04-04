@@ -122,13 +122,15 @@ public class UserAdminController {
             String img = upload();
             if (img != null && img != "") {
                 user.setImg(img);
-                if (insert.insert(user) > 0) {
-                    alert = "Insert success";
-                    name = "success";
-                } else {
-                    alert = "Insert failed";
-                    name = "failed";
-                }
+            } else {
+                user.setImg(null);
+            }
+            if (insert.insert(user) > 0) {
+                alert = "Insert success";
+                name = "success";
+            } else {
+                alert = "Insert failed";
+                name = "failed";
             }
         } else {
             update = new Update(new UpdateUser());
@@ -199,7 +201,7 @@ public class UserAdminController {
                     searchByRole();
                     break;
                 case "user_date":
-                    user.setDate_regis(val);
+                    user.setCreate_date(val);
                     searchByDate();
                     break;
                 case "user_sex":
@@ -247,10 +249,10 @@ public class UserAdminController {
 
     //upload file
     private String upload() {
-        if(part.getSubmittedFileName()!=null){
+        if (part.getSubmittedFileName() != null) {
             UploadFile up = new UploadFile();
             return up.uploadone(part, (HttpServletRequest) facesContext.getExternalContext().getRequest());
-        }else{
+        } else {
             return null;
         }
     }

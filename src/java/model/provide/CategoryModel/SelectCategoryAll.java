@@ -39,9 +39,14 @@ public class SelectCategoryAll implements ISelect<category> {
             while (rs.next()) {
                 category n = new category();
                 n.setCate_id(rs.getInt(1));
-                n.setCate_alias(rs.getString(2));
-                n.setCate_name(rs.getString(3));
-                n.setCate_order(rs.getInt(4));
+                n.setCreate_date(rs.getDate(2));
+                n.setCreate_uid(rs.getInt(3));
+                n.setWrite_date(rs.getDate(4));
+                n.setWrite_uid(rs.getInt(5));
+                n.setParent_id(rs.getInt(6));
+                n.setCate_alias(rs.getString(7));
+                n.setCate_name(rs.getString(8));
+                n.setCate_order(rs.getInt(9));
                 list.add(n);
             }
         } catch (Exception e) {
@@ -49,5 +54,9 @@ public class SelectCategoryAll implements ISelect<category> {
             connectManager.closeConnection();
             return list;
         }
+    }
+    public static void main(String[] args){
+        SelectCategoryAll s = new SelectCategoryAll();
+        System.out.print(s.select(null).size());
     }
 }

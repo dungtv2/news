@@ -13,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import model.provide.CategoryModel.DeleteCategory;
 import model.provide.CategoryModel.InsertCategory;
 import model.provide.CategoryModel.SelectCategoryAll;
 import model.provide.CategoryModel.UpdateCategory;
@@ -75,7 +76,7 @@ public class CategoryAdminController {
             }
         } else {
             update = new Update(new UpdateCategory());
-           if (update.update(cate) > 0) {
+            if (update.update(cate) > 0) {
                 name = "success";
                 alert = "Update success";
             } else {
@@ -83,6 +84,21 @@ public class CategoryAdminController {
                 alert = "Update failed";
             }
             flag = false;
+        }
+        sendAttribute(name, alert);
+        selectAll();
+    }
+
+    public void delete(category cate) {
+        delete = new Delete(new DeleteCategory());
+        String name = "";
+        String alert = "";
+        if (delete.delete(cate) > 0) {
+            name = "success";
+            alert = "Delete success";
+        } else {
+            name = "failed";
+            alert = "Delete failed";
         }
         sendAttribute(name, alert);
         selectAll();

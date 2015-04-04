@@ -41,7 +41,7 @@ public class SelectUserByDate extends AbstractSearchByAll implements ISelect<use
             list = new ArrayList<user>();
             CallableStatement cs = con.prepareCall("{call sp_selectUserByDate(?)}");
             SimpleDateFormat sim = new SimpleDateFormat("dd/MM/yyyy");
-            java.sql.Date date = new java.sql.Date(sim.parse(t.getDate_regis()).getTime());
+            java.sql.Date date = new java.sql.Date(sim.parse(t.getCreate_date()).getTime());
             cs.setDate(1, date);
             ResultSet rs = cs.executeQuery();
             list = SelectUserCode.select(rs);
@@ -55,7 +55,7 @@ public class SelectUserByDate extends AbstractSearchByAll implements ISelect<use
     @Override
     public void search(String str) {
         user user = new user();
-        user.setDate_regis(str);
+        user.setCreate_date(str);
         if (select(user) != null && select(user).size() > 0) {
             super.setList(select(user));
             super.setNextSearch(null);

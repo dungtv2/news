@@ -66,6 +66,8 @@ public class RoleController {
     public void insert() {
         String name = "";
         String alert = "";
+        role.setCreate_uid(1);
+        role.setWrite_uid(1);
         if (!flag) {
             insert = new Insert(new InsertRole());
             if (insert.insert(role) > 0) {

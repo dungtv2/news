@@ -105,7 +105,9 @@ function dropdown() {
         sl.css({width: th.parent().outerWidth() + 'px'});
         sl.show('clip', 500);
         sl.children('li').click(function() {
-            th.val($(this).attr("value"));
+            //th.val($(this).attr("value"));
+            th.val($(this).find('a').text().trim());
+            th.prev("input[type='hidden']").val($(this).attr('value'));
             sl.hide("blind", 500);
             th.next('.drop').remove();
         });

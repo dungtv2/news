@@ -90,11 +90,21 @@
                                                     </div>
                                                     <div class="col-2">
                                                         <div class="form-group form-group-default">
-                                                            <label>Role<span class="help">loại</span></label>
-                                                            <input type="text" class="form-control" jsf:value="#{userAdBean.user.roleid}" data-select="select" />
+                                                            <label>Parent ID<span class="help">loại</span></label>
+                                                            <input type="hidden" jsf:value="#{cateAdbean.cate.parent_id}" />
+                                                            <input type="text" class="form-control" data-select="select" />
                                                             <ul class="select">
-                                                                <c:forEach items="#{roleBean.listRole}" var="item">
-                                                                    <li value="#{item.role_id}">#{item.role_name}</li>
+                                                                <c:set var="count" value="0"/>
+                                                                <c:forEach items="#{cateAdbean.listCategory}" var="item">
+                                                                    <c:if test="#{item.parent_id==0}">
+                                                                        <c:set value="#{count+1}" var="count" />
+                                                                        <li value="#{item.cate_id}"><span>#{count}. </span><a>#{item.cate_name}</a></li>
+                                                                        <c:forEach items="#{cateAdbean.listCategory}" var="subitem">
+                                                                            <c:if test="#{item.cate_id==subitem.parent_id}">
+                                                                                <li value="#{subitem.cate_id}"><span>---------</span><a>#{subitem.cate_name}</a></li>
+                                                                            </c:if>
+                                                                        </c:forEach>
+                                                                    </c:if>
                                                                 </c:forEach>
                                                             </ul>
                                                         </div>
@@ -131,6 +141,10 @@
                                                 <div class="table">
                                                     <div class="tbl-row">
                                                         <div class="cell cell-title"><label>ID</label></div>
+                                                        <div class="cell cell-title"><label>Create Date</label></div>
+                                                        <div class="cell cell-title"><label>Create UID</label></div>
+                                                        <div class="cell cell-title"><label>Write Date</label></div>
+                                                        <div class="cell cell-title"><label>Write UID</label></div>
                                                         <div class="cell cell-title"><label>Parent ID</label></div>
                                                         <div class="cell cell-title"><label>Alias</label></div>
                                                         <div class="cell cell-title"><label>Name</label></div>
@@ -140,6 +154,10 @@
                                                     <c:forEach items="#{cateAdbean.listCategory}" var="item">
                                                         <div class="tbl-row">
                                                             <div class="cell cell-data"><label>#{item.cate_id}</label></div>
+                                                            <div class="cell cell-data"><label>#{item.create_date}</label></div>
+                                                            <div class="cell cell-data"><label>#{item.create_uid}</label></div>
+                                                            <div class="cell cell-data"><label>#{item.write_date}</label></div>
+                                                            <div class="cell cell-data"><label>#{item.write_uid}</label></div>
                                                             <div class="cell cell-data"><label>#{item.parent_id}</label></div>
                                                             <div class="cell cell-data"><label>#{item.cate_alias}</label></div>
                                                             <div class="cell cell-data"><label>#{item.cate_name}</label></div>
@@ -150,6 +168,9 @@
                                                                     <f:setPropertyActionListener value="true" target="#{cateAdbean.flag}" />
                                                                     <f:setPropertyActionListener value="#{item}" target="#{cateAdbean.cate}" />
                                                                 </h:commandLink>
+                                                                <a class="btn btn-default" jsf:action="#{cateAdbean.delete(item)}">
+                                                                    <i class="i-gr i-o11" />
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </c:forEach>

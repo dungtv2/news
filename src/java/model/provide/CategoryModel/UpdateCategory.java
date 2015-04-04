@@ -31,11 +31,15 @@ public class UpdateCategory implements IUpdate {
         connectManager.openConnection();
         con = connectManager.getConnection();
         try {
-            CallableStatement cs = con.prepareCall("{call sp_updateCate(?,?,?,?)}");
-            cs.setInt(1, cate.getCate_id());
-            cs.setString(2, cate.getCate_alias());
-            cs.setString(3, cate.getCate_name());
-            cs.setInt(4, cate.getCate_order());
+            CallableStatement cs = con.prepareCall("{call sp_updateCate(?,?,?,?,?,?,?)}");
+            java.sql.Date write_date = new java.sql.Date(new java.util.Date().getTime());
+            cs.setDate(1, write_date);
+            cs.setInt(2, cate.getWrite_uid());
+            cs.setInt(3, cate.getCate_id());
+            cs.setInt(4, cate.getParent_id());
+            cs.setString(5, cate.getCate_alias());
+            cs.setString(6, cate.getCate_name());
+            cs.setInt(7, cate.getCate_order());
             check = cs.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,5 +47,4 @@ public class UpdateCategory implements IUpdate {
             return check;
         }
     }
-
 }

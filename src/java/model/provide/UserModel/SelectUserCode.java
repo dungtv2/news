@@ -25,25 +25,24 @@ public class SelectUserCode {
             list = new ArrayList<user>();
             while (rs.next()) {
                 user n = new user();
-                n.setId(rs.getInt(1));
-                n.setName(rs.getString(2));
-                n.setUsername(rs.getString(3));
-                n.setPassword(rs.getString(4));
-                n.setImg(rs.getString(5));
-                n.setEmail(rs.getString(6));
                 SimpleDateFormat sim = new SimpleDateFormat("dd/MM/yyyy");
-                if (rs.getDate(7) != null) {
-                    Date birthday = new Date(rs.getDate(7).getTime());
+                n.setId(rs.getInt(1));
+                Date regis = new Date(rs.getDate(2).getTime());
+                n.setCreate_date(sim.format(regis));
+                n.setWrite_date(rs.getDate(3));
+                n.setName(rs.getString(4));
+                n.setUsername(rs.getString(5));
+                n.setPassword(rs.getString(6));
+                n.setImg(rs.getString(7));
+                n.setEmail(rs.getString(8));
+                if (rs.getDate(9) != null) {
+                    Date birthday = new Date(rs.getDate(9).getTime());
                     n.setBirthday(sim.format(birthday));
                 }
-                if (rs.getDate(9) != null) {
-                    Date regis = new Date(rs.getDate(9).getTime());
-                    n.setDate_regis(sim.format(regis));
-                }
-                n.setSex(rs.getString(8));
-                n.setStatus(rs.getBoolean(10));
-                n.setRoleid(rs.getInt(11));
-                n.setRole_name(rs.getString(13));
+                n.setSex(rs.getString(10));
+                n.setStatus(rs.getBoolean(11));
+                n.setRoleid(rs.getInt(12));
+                n.setRole_name(rs.getString(18));
                 list.add(n);
             }
         } catch (SQLException ex) {

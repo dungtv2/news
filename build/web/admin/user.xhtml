@@ -84,10 +84,11 @@
                                                     <div class="col-2">
                                                         <div class="form-group form-group-default">
                                                             <label>Role<span class="help">loại</span></label>
-                                                            <input type="text" class="form-control" jsf:value="#{userAdBean.user.roleid}" data-select="select" />
+                                                            <input type="hidden" jsf:value="#{userAdBean.user.roleid}" />
+                                                            <input type="text" class="form-control" data-select="select" />
                                                             <ul class="select">
                                                                 <c:forEach items="#{roleBean.listRole}" var="item">
-                                                                    <li value="#{item.role_id}">#{item.role_name}</li>
+                                                                    <li value="#{item.role_id}"><span></span><a>#{item.role_name}</a></li>
                                                                 </c:forEach>
                                                             </ul>
                                                         </div>
@@ -237,6 +238,8 @@
                                                                 <i class="i-gr i-o11" />
                                                             </a></div></div>
                                                     <div class="cell cell-title"><label>ID</label></div>
+                                                    <div class="cell cell-title"><label>Create Date</label></div>
+                                                    <div class="cell cell-title"><label>Write Date</label></div>
                                                     <div class="cell cell-title"><label>Name</label></div>
                                                     <div class="cell cell-title"><label>UserName</label></div>
                                                     <div class="cell cell-title"><label>Password</label></div>
@@ -244,7 +247,6 @@
                                                     <div class="cell cell-title"><label>Email</label></div>
                                                     <div class="cell cell-title"><label>Birthday</label></div>
                                                     <div class="cell cell-title"><label>Sex</label></div>
-                                                    <div class="cell cell-title"><label>DateRegis</label></div>
                                                     <div class="cell cell-title"><label>Role</label></div>
                                                     <div class="cell cell-title"><label>Action</label></div>
                                                 </div>
@@ -268,6 +270,8 @@
                                                     </script>
                                                     <div class="cell cell-title"><label>Search</label></div>
                                                     <div class="cell cell-title"><input type="text" class="form-control no-padding id txt_search" id="user_id"/></div>
+                                                    <div class="cell cell-title"><input type="text" class="form-control no-padding date txt_search datepicker" id="user_date" /></div>
+                                                    <div class="cell cell-title"></div>
                                                     <div class="cell cell-title"><input type="text" class="form-control no-padding name txt_search" id="user_name"/></div>
                                                     <div class="cell cell-title"><input type="text" class="form-control no-padding username txt_search" id="user_username" /></div>
                                                     <div class="cell cell-title"></div>
@@ -281,7 +285,6 @@
                                                             <f:selectItem itemLabel="Nữ" itemValue="nữ" />
                                                         </h:selectOneMenu>
                                                     </div>
-                                                    <div class="cell cell-title"><input type="text" class="form-control no-padding date txt_search datepicker" id="user_date" /></div>
                                                     <div class="cell cell-title">
                                                         <h:selectOneMenu id="user_role">
                                                             <f:selectItem itemLabel="---Role---" noSelectionOption="true" />
@@ -304,6 +307,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="cell cell-data"><label>#{item.id}</label></div>
+                                                        <div class="cell cell-data"><label>#{item.create_date}</label></div>
+                                                        <div class="cell cell-data"><label>#{item.write_date}</label></div>
                                                         <div class="cell cell-data"><label>#{item.name}</label></div>
                                                         <div class="cell cell-data"><label>#{item.username}</label></div>
                                                         <div class="cell cell-data"><label>#{item.password}</label></div>
@@ -311,7 +316,6 @@
                                                         <div class="cell cell-data"><label>#{item.email}</label></div>
                                                         <div class="cell cell-data"><label>#{item.birthday}</label></div>
                                                         <div class="cell cell-data"><label>#{item.sex}</label></div>
-                                                        <div class="cell cell-data"><label>#{item.date_regis}</label></div>
                                                         <div class="cell cell-data"><label>#{item.role_name}</label></div>
                                                         <div class="cell cell-data">
                                                             <h:commandLink class="btn btn-default">

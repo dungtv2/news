@@ -14,6 +14,8 @@ import java.util.Date;
 public class user {
 
     private int id;
+    private String create_date;
+    private Date write_date;
     private String name;
     private String username;
     private String password;
@@ -21,7 +23,6 @@ public class user {
     private String email;
     private String birthday;
     private String sex;
-    private String date_regis;
     private int roleid;
     private String role_name;
     private boolean status;
@@ -29,8 +30,10 @@ public class user {
     public user() {
     }
 
-    public user(int id, String name, String username, String password, String img, String email, String birthday, String sex, String date_regis, int roleid, boolean status) {
+    public user(int id, String create_date, Date write_date, String name, String username, String password, String img, String email, String birthday, String sex, int roleid, boolean status) {
         this.id = id;
+        this.create_date = create_date;
+        this.write_date = write_date;
         this.name = name;
         this.username = username;
         this.password = password;
@@ -38,7 +41,6 @@ public class user {
         this.email = email;
         this.birthday = birthday;
         this.sex = sex;
-        this.date_regis = date_regis;
         this.roleid = roleid;
         this.status = status;
     }
@@ -49,6 +51,22 @@ public class user {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(String create_date) {
+        this.create_date = create_date;
+    }
+
+    public Date getWrite_date() {
+        return write_date;
+    }
+
+    public void setWrite_date(Date write_date) {
+        this.write_date = write_date;
     }
 
     public String getName() {
@@ -107,14 +125,6 @@ public class user {
         this.sex = sex;
     }
 
-    public String getDate_regis() {
-        return date_regis;
-    }
-
-    public void setDate_regis(String date_regis) {
-        this.date_regis = date_regis;
-    }
-
     public int getRoleid() {
         return roleid;
     }
@@ -130,10 +140,12 @@ public class user {
     public void setRole_name(String role_name) {
         this.role_name = role_name;
     }
-    public boolean getStatus(){
+
+    public boolean getStatus() {
         return this.status;
     }
-    public void setStatus(boolean status){
+
+    public void setStatus(boolean status) {
         this.status = status;
     }
 }
