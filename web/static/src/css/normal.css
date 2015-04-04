@@ -150,6 +150,7 @@ overflow: hidden;}
 .block_image_news .title_news {width: auto;float: none;}
 .block_image_news .news_lead {float: none;margin: 0;width: auto;}
 .block_image_news .thumb {margin-right: 10px;}
+.block_image_news li{width: 100%; float: left; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dotted #ccc}
 
 
 .col_30 {width: 30%}.col_40 {width: 40%}.col_50 {width: 50%}.col_60 {width: 60%}.col_70 {width: 70%}.col_80 {width: 80%}
